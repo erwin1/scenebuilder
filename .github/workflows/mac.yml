@@ -12,6 +12,10 @@ jobs:
         uses: joschi/setup-jdk@v2
         with:
           java-version: 15
+      - uses: Apple-Actions/import-codesign-certs@v1
+        with:
+          p12-file-base64: ${{ secrets.CERTIFICATES_FILE_BASE64 }}
+          p12-password: ${{ secrets.CERTIFICATES_PASSWORD }}
       - name: Create Bundle using JPackage
         run: |
           wget -P /tmp https://download2.gluonhq.com/openjfx/15.0.1/openjfx-15.0.1_osx-x64_bin-jmods.zip
