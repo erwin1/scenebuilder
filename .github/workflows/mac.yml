@@ -37,6 +37,7 @@ jobs:
           product-path: ${{ steps.outputfile.outputs.path }}
           appstore-connect-username: ${{ secrets.NOTARIZATION_USERNAME }}
           appstore-connect-password: ${{ secrets.NOTARIZATION_PASSWORD }}
+          primary-bundle-id: com.gluonhq.scenebuilder
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
