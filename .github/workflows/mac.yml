@@ -27,7 +27,9 @@ jobs:
           JPACKAGE_HOME: ${{env.JAVA_HOME}}
           GLUON_MACSIGN_PREFIX: ${{ secrets.GLUON_MACSIGN_PREFIX }}
           GLUON_MACSIGN_USER: ${{ secrets.GLUON_MACSIGN_USER }}
-      - run: echo ::set-output name=path::app/build/SceneBuilder-$TAG.dmg
+      - run: |
+          TAG=${GITHUB_REF/refs\/tags\//}
+          echo ::set-output name=path::app/build/SceneBuilder-$TAG.dmg
         id: outputfile
       - name: "Notarize Release Build"
         uses: devbotsxyz/xcode-notarize@v1
