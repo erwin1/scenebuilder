@@ -18,7 +18,7 @@ jobs:
           p12-password: ${{ secrets.CERTIFICATES_PASSWORD }}
       - name: Create Bundle using JPackage
         run: |
-          wget -P /tmp https://download2.gluonhq.com/openjfx/15.0.1/openjfx-15.0.1_osx-x64_bin-jmods-SIGNED.zip
+          wget -P /tmp https://download2.gluonhq.com/tmp/openjfx-15.0.1_osx-x64_bin-jmods-SIGNED.zip
           unzip /tmp/openjfx-15.0.1_osx-x64_bin-jmods-SIGNED.zip -d /tmp
           TAG=${GITHUB_REF/refs\/tags\//}
           ./gradlew jlink jpackage -PVERSION=$TAG -PsigningPrefix="$GLUON_MACSIGN_PREFIX" -PsigningKeyUsername="$GLUON_MACSIGN_USER"
