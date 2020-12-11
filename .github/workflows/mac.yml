@@ -32,12 +32,13 @@ jobs:
           echo ::set-output name=path::app/build/SceneBuilder-$TAG.dmg
         id: outputfile
       - name: "Notarize Release Build"
-        uses: devbotsxyz/xcode-notarize@v1
+        uses: erwin1/xcode-notarize@main
         with:
           product-path: ${{ steps.outputfile.outputs.path }}
           appstore-connect-username: ${{ secrets.NOTARIZATION_USERNAME }}
           appstore-connect-password: ${{ secrets.NOTARIZATION_PASSWORD }}
           primary-bundle-id: com.gluonhq.scenebuilder
+          asc-provider: ${{ secrets.GLUON_MACSIGN_PREFIX }}
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
