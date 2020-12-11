@@ -39,6 +39,7 @@ jobs:
           appstore-connect-password: ${{ secrets.NOTARIZATION_PASSWORD }}
           primary-bundle-id: com.gluonhq.scenebuilder
           asc-provider: ${{ secrets.GLUON_MACSIGN_PREFIX }}
+          verbose: true
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
