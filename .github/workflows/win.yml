@@ -5,11 +5,11 @@ on:
       tag:
         description: 'Test Tag'     
         required: true
-#  push:
-#    tags:
-#      - '*'
+  push:
+    tags:
+      - '*'
 
-#          TAG=${GITHUB_REF/refs\/tags\//}
+#          TAG=${{ github.event.inputs.tag }}
 
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
       - name: Store Variables
         id: variables
         run: |
-          TAG=${{ github.event.inputs.tag }}
+          TAG=${GITHUB_REF/refs\/tags\//}
           VERSION=$TAG
           S3_PATH=${{ env.AWS_S3_BUCKET }}/scenebuilder/$TAG/install/windows/
           if [[ "$TAG" == *-RC* ]]; then
