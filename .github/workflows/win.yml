@@ -9,6 +9,7 @@ on:
 #    tags:
 #      - '*'
 
+#          TAG=${GITHUB_REF/refs\/tags\//}
 
 
 jobs:
@@ -23,7 +24,6 @@ jobs:
         id: variables
         run: |
           TAG=${{ github.event.inputs.tag }}
-#          TAG=${GITHUB_REF/refs\/tags\//}
           VERSION=$TAG
           S3_PATH=${{ env.AWS_S3_BUCKET }}/scenebuilder/$TAG/install/windows/
           if [[ "$TAG" == *-RC* ]]; then
