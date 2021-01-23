@@ -22,8 +22,8 @@ jobs:
       - name: Store Variables
         id: variables
         run: |
-#          TAG=${GITHUB_REF/refs\/tags\//}
           TAG=${{ github.event.inputs.tag }}
+#          TAG=${GITHUB_REF/refs\/tags\//}
           VERSION=$TAG
           S3_PATH=${{ env.AWS_S3_BUCKET }}/scenebuilder/$TAG/install/windows/
           if [[ "$TAG" == *-RC* ]]; then
